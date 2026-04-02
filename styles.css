@@ -1,9 +1,20 @@
+:root {
+  --purple: rgb(61 29 62   / 100%);
+  --mint:   rgb(81 173 119 / 100%);
+  --blue:   rgb(18 69 117  / 100%);
+  --orange: rgb(182 101 41 / 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   height: 100vh;
   display: flex;
   align-items: center;
-  background: rgb(36, 31, 35);
+  /* background: rgb(36, 31, 35); */
 }
 
 /* 744 × 752 */
@@ -22,11 +33,26 @@ svg {
   top: 0; bottom: 0; left: 0; right: 0;
   opacity: 1;
   /* background: rgb(206, 201, 151); */
+  /* background: linear-gradient(to top right, var(--blue), var(--blue) 50%, var(--purple) 50%, var(--purple)); */
+  /* border: 1px solid white; */
+
+  /* mix-blend-mode: difference; */
+
 }
 
 svg text {
   fill: white;
 }
+
+svg circle {
+  /* fill: none; */
+  stroke: black;
+  stroke-width: 2px;
+  /* mix-blend-mode: screen; */
+  mix-blend-mode: difference;
+  /* mix-blend-mode: soft-light; */
+}
+
 
 svg .coordinates.hide {
   display: none;
@@ -36,3 +62,122 @@ img {
   /* display: none; */
 }
 
+
+
+#north_circles circle:nth-child(1) {
+  fill: var(--purple);
+}
+#north_circles circle:nth-child(2) {
+  fill: var(--mint);
+}
+#north_circles circle:nth-child(3) {
+  fill: var(--purple);
+}
+#north_circles circle:nth-child(4) {
+  fill: var(--mint);
+}
+#north_circles circle:nth-child(5) {
+  fill: var(--purple);
+}
+#north_circles circle:nth-child(6) {
+  fill: var(--mint);
+}
+#north_circles circle:nth-child(7) {
+  fill: var(--purple);
+}
+#north_circles circle:nth-child(8) {
+  fill: var(--mint);
+}
+
+
+#south_east_circles circle:nth-child(1),
+#south_west_circles circle:nth-child(1) {
+  fill: var(--orange);
+}
+#south_east_circles circle:nth-child(2),
+#south_west_circles circle:nth-child(2) {
+  fill: var(--blue);
+}
+#south_east_circles circle:nth-child(3),
+#south_west_circles circle:nth-child(3) {
+  fill: var(--orange);
+}
+#south_east_circles circle:nth-child(4),
+#south_west_circles circle:nth-child(4) {
+  fill: var(--blue);
+}
+#south_east_circles circle:nth-child(5),
+#south_west_circles circle:nth-child(5) {
+  fill: var(--orange);
+}
+#south_east_circles circle:nth-child(6),
+#south_west_circles circle:nth-child(6) {
+  fill: var(--blue);
+}
+#south_east_circles circle:nth-child(7),
+#south_west_circles circle:nth-child(7) {
+  fill: var(--orange);
+}
+#south_east_circles circle:nth-child(8),
+#south_west_circles circle:nth-child(8) {
+  fill: var(--blue);
+}
+
+
+#north_east_circles circle:nth-child(1),
+#north_west_circles circle:nth-child(1) {
+  fill: var(--mint);
+}
+#north_east_circles circle:nth-child(2),
+#north_west_circles circle:nth-child(2) {
+  fill: var(--purple);
+}
+#north_east_circles circle:nth-child(3),
+#north_west_circles circle:nth-child(3) {
+  fill: var(--mint);
+}
+#north_east_circles circle:nth-child(4),
+#north_west_circles circle:nth-child(4) {
+  fill: var(--purple);
+}
+#north_east_circles circle:nth-child(5),
+#north_west_circles circle:nth-child(5) {
+  fill: var(--mint);
+}
+#north_east_circles circle:nth-child(6),
+#north_west_circles circle:nth-child(6) {
+  fill: var(--purple);
+}
+#north_east_circles circle:nth-child(7),
+#north_west_circles circle:nth-child(7) {
+  fill: var(--mint);
+}
+#north_east_circles circle:nth-child(8),
+#north_west_circles circle:nth-child(8) {
+  fill: var(--purple);
+}
+
+#south_circles circle:nth-child(1) {
+  fill: var(--blue);
+}
+#south_circles circle:nth-child(2) {
+  fill: var(--orange);
+}
+#south_circles circle:nth-child(3) {
+  fill: var(--blue);
+}
+#south_circles circle:nth-child(4) {
+  fill: var(--orange);
+}
+#south_circles circle:nth-child(5) {
+  fill: var(--blue);
+}
+#south_circles circle:nth-child(6) {
+  fill: var(--orange);
+}
+#south_circles circle:nth-child(7) {
+  fill: var(--blue);
+}
+#south_circles circle:nth-child(8) {
+  fill: var(--orange);
+}

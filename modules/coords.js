@@ -6,7 +6,7 @@ const my_svg = document.getElementById('svg');
 
 
 const coords_g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-coords_g.setAttribute("class", "coordinates");
+coords_g.setAttribute("class", "coordinates hide");
 const vertical_g = document.createElementNS("http://www.w3.org/2000/svg", "g");
 vertical_g.setAttribute("class", "vertical");
 const horizontal_g = document.createElementNS("http://www.w3.org/2000/svg", "g");
