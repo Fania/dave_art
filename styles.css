@@ -1,8 +1,12 @@
 :root {
-  --purple: rgb(61 29 62   / 100%);
-  --mint:   rgb(81 173 119 / 100%);
-  --blue:   rgb(18 69 117  / 100%);
-  --orange: rgb(182 101 41 / 100%);
+  --purple: rgb(61 29 62   / 20%);
+  --mint:   rgb(81 173 119 / 20%);
+  --blue:   rgb(18 69 117  / 20%);
+  --orange: rgb(182 101 41 / 20%);
+  /* --purple: rgb(145 12 149);
+  --mint: rgb(101 177 132);
+  --blue: rgb(13 82 147);
+  --orange: rgb(209 92 5); */
 }
 
 * {
@@ -49,7 +53,7 @@ svg circle {
   stroke: black;
   stroke-width: 2px;
   /* mix-blend-mode: screen; */
-  mix-blend-mode: difference;
+  /* mix-blend-mode: difference; */
   /* mix-blend-mode: soft-light; */
 }
 
@@ -61,6 +65,32 @@ svg .coordinates.hide {
 img {
   /* display: none; */
 }
+
+
+
+
+
+#north_circles {
+  transform: translate(-1000px, -600px);
+}
+#north_west_circles {
+  transform: translate(-652px, -800px);
+}
+#north_east_circles {
+  transform: translate(-1348px, -800px);
+}
+#south_circles {
+  transform: translate(-1000px, -1400px);
+}
+#south_west_circles {
+  transform: translate(-652px, -1200px);
+}
+#south_east_circles {
+  transform: translate(-1348px, -1200px);
+}
+
+
+
 
 
 

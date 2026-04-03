@@ -44,19 +44,63 @@
             --orange: rgb(182 101 41 / 100%); -->
       <linearGradient id="purple_blue"
         gradientTransform="rotate(-60 .5 .5)">
-        <stop offset="0" stop-color="rgb(61 29 62)"/>
-        <stop offset="0.5" stop-color="rgb(61 29 62)"/>
-        <stop offset="0.5" stop-color="rgb(18 69 117)"/>
-        <stop offset="1" stop-color="rgb(18 69 117)"/>
+        <stop offset="0" stop-color="rgb(61 29 62 / 20%)"/>
+        <stop offset="0.5" stop-color="rgb(61 29 62 / 20%)"/>
+        <stop offset="0.5" stop-color="rgb(18 69 117 / 20%)"/>
+        <stop offset="1" stop-color="rgb(18 69 117 / 20%)"/>
       </linearGradient>
       <linearGradient id="orange_mint"
         gradientTransform="rotate(-60 .5 .5)">
-        <stop offset="0" stop-color="rgb(81 173 119)"/>
-        <stop offset="0.5" stop-color="rgb(81 173 119)"/>
-        <stop offset="0.5" stop-color="rgb(182 101 41)"/>
-        <stop offset="1" stop-color="rgb(182 101 41)"/>
+        <stop offset="0" stop-color="rgb(81 173 119 / 20%)"/>
+        <stop offset="0.5" stop-color="rgb(81 173 119 / 20%)"/>
+        <stop offset="0.5" stop-color="rgb(182 101 41 / 20%)"/>
+        <stop offset="1" stop-color="rgb(182 101 41 / 20%)"/>
       </linearGradient>
 
+      <animateMotion
+        xlink:href="#north_circles"
+        dur="12s"
+        begin="0s"
+        repeatCount="indefinite">
+        <mpath xlink:href="#animationPath"></mpath>
+      </animatemotion>
+      <animateMotion
+        xlink:href="#north_east_circles"
+        dur="12s"
+        begin="-2s"
+        repeatCount="indefinite">
+        <mpath xlink:href="#animationPath"></mpath>
+      </animatemotion>
+      <animateMotion
+        xlink:href="#south_east_circles"
+        dur="12s"
+        begin="-4s"
+        repeatCount="indefinite">
+        <mpath xlink:href="#animationPath"></mpath>
+      </animatemotion>
+      <animateMotion
+        xlink:href="#south_circles"
+        dur="12s"
+        begin="-6s"
+        repeatCount="indefinite">
+        <mpath xlink:href="#animationPath"></mpath>
+      </animatemotion>
+      <animateMotion
+        xlink:href="#south_west_circles"
+        dur="12s"
+        begin="-8s"
+        repeatCount="indefinite">
+        <mpath xlink:href="#animationPath"></mpath>
+      </animatemotion>
+      <animateMotion
+        xlink:href="#north_west_circles"
+        dur="12s"
+        begin="-10s"
+        repeatCount="indefinite">
+        <mpath xlink:href="#animationPath"></mpath>
+      </animatemotion>
+
+      <path id="animationPath" fill="none" stroke="red" stroke-width="10" d="M600,1000 a400,400 0 1,0 800,0 a400,400 0 1,0 -800,0"/>
     </defs>
 
     <g id="colour_blocks">
@@ -131,6 +175,8 @@
         <circle r="50"  cx="1000" cy="1000" fill="url(#orange_mint)"/>
       </g>
     </g>
+
+
   </svg>
 </main>
 
