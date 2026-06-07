@@ -33,158 +33,60 @@
 
 <main>
 
-  <!-- <img src="dave_art.png" alt="original artwork by Dave"> -->
+  <img src="ball_plane.png" alt="original artwork by Dave">
 
-  <svg id="svg" viewBox="0 0 2000 2000" width="2000" height="2000" preserveAspectRatio="xMidYMid meet" overflow="hidden">
+  <svg id="svg" viewBox="0 0 2774 3875" width="2774" height="3875" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 
     <defs>
         <!-- --purple: rgb(61 29 62   / 100%);
             --mint:   rgb(81 173 119 / 100%);
             --blue:   rgb(18 69 117  / 100%);
             --orange: rgb(182 101 41 / 100%); -->
-      <linearGradient id="purple_blue"
-        gradientTransform="rotate(-60 .5 .5)">
-        <stop offset="0" stop-color="rgb(61 29 62 / 20%)"/>
-        <stop offset="0.5" stop-color="rgb(61 29 62 / 20%)"/>
-        <stop offset="0.5" stop-color="rgb(18 69 117 / 20%)"/>
-        <stop offset="1" stop-color="rgb(18 69 117 / 20%)"/>
-      </linearGradient>
-      <linearGradient id="orange_mint"
-        gradientTransform="rotate(-60 .5 .5)">
-        <stop offset="0" stop-color="rgb(81 173 119 / 20%)"/>
-        <stop offset="0.5" stop-color="rgb(81 173 119 / 20%)"/>
-        <stop offset="0.5" stop-color="rgb(182 101 41 / 20%)"/>
-        <stop offset="1" stop-color="rgb(182 101 41 / 20%)"/>
-      </linearGradient>
-
-      <animateMotion
-        xlink:href="#north_circles"
-        dur="12s"
-        begin="0s"
-        repeatCount="indefinite">
-        <mpath xlink:href="#animationPath"></mpath>
-      </animatemotion>
-      <animateMotion
-        xlink:href="#north_east_circles"
-        dur="12s"
-        begin="-2s"
-        repeatCount="indefinite">
-        <mpath xlink:href="#animationPath"></mpath>
-      </animatemotion>
-      <animateMotion
-        xlink:href="#south_east_circles"
-        dur="12s"
-        begin="-4s"
-        repeatCount="indefinite">
-        <mpath xlink:href="#animationPath"></mpath>
-      </animatemotion>
-      <animateMotion
-        xlink:href="#south_circles"
-        dur="12s"
-        begin="-6s"
-        repeatCount="indefinite">
-        <mpath xlink:href="#animationPath"></mpath>
-      </animatemotion>
-      <animateMotion
-        xlink:href="#south_west_circles"
-        dur="12s"
-        begin="-8s"
-        repeatCount="indefinite">
-        <mpath xlink:href="#animationPath"></mpath>
-      </animatemotion>
-      <animateMotion
-        xlink:href="#north_west_circles"
-        dur="12s"
-        begin="-10s"
-        repeatCount="indefinite">
-        <mpath xlink:href="#animationPath"></mpath>
-      </animatemotion>
-
-      <path id="animationPath" fill="none" stroke="red" stroke-width="10" d="M600,1000 a400,400 0 1,0 800,0 a400,400 0 1,0 -800,0"/>
     </defs>
 
+    <rect x="4" y="4" width="2764" height="3865" fill="none" stroke="black" stroke-width="20"/>
+
     <g id="colour_blocks">
-      <g id="north_circles">
-        <circle r="400" cx="1000" cy="600"/>
-        <circle r="350" cx="1000" cy="600"/>
-        <circle r="300" cx="1000" cy="600"/>
-        <circle r="250" cx="1000" cy="600"/>
-        <circle r="200" cx="1000" cy="600"/>
-        <circle r="150" cx="1000" cy="600"/>
-        <circle r="100" cx="1000" cy="600"/>
-        <circle r="50"  cx="1000" cy="600"/>
-      </g>
-      <g id="north_east_circles">
-        <circle r="400" cx="1348" cy="800"/>
-        <circle r="350" cx="1348" cy="800"/>
-        <circle r="300" cx="1348" cy="800"/>
-        <circle r="250" cx="1348" cy="800"/>
-        <circle r="200" cx="1348" cy="800"/>
-        <circle r="150" cx="1348" cy="800"/>
-        <circle r="100" cx="1348" cy="800"/>
-        <circle r="50"  cx="1348" cy="800"/>
-      </g>
-      <g id="south_east_circles">
-        <circle r="400" cx="1348" cy="1200"/>
-        <circle r="350" cx="1348" cy="1200"/>
-        <circle r="300" cx="1348" cy="1200"/>
-        <circle r="250" cx="1348" cy="1200"/>
-        <circle r="200" cx="1348" cy="1200"/>
-        <circle r="150" cx="1348" cy="1200"/>
-        <circle r="100" cx="1348" cy="1200"/>
-        <circle r="50"  cx="1348" cy="1200"/>
-      </g>
-      <g id="south_circles">
-        <circle r="400" cx="1000" cy="1400"/>
-        <circle r="350" cx="1000" cy="1400"/>
-        <circle r="300" cx="1000" cy="1400"/>
-        <circle r="250" cx="1000" cy="1400"/>
-        <circle r="200" cx="1000" cy="1400"/>
-        <circle r="150" cx="1000" cy="1400"/>
-        <circle r="100" cx="1000" cy="1400"/>
-        <circle r="50"  cx="1000" cy="1400"/>
-      </g>
-      <g id="south_west_circles">
-        <circle r="400" cx="652" cy="1200"/>
-        <circle r="350" cx="652" cy="1200"/>
-        <circle r="300" cx="652" cy="1200"/>
-        <circle r="250" cx="652" cy="1200"/>
-        <circle r="200" cx="652" cy="1200"/>
-        <circle r="150" cx="652" cy="1200"/>
-        <circle r="100" cx="652" cy="1200"/>
-        <circle r="50"  cx="652" cy="1200"/>
-      </g>
-      <g id="north_west_circles">
-        <circle r="400" cx="652" cy="800"/>
-        <circle r="350" cx="652" cy="800"/>
-        <circle r="300" cx="652" cy="800"/>
-        <circle r="250" cx="652" cy="800"/>
-        <circle r="200" cx="652" cy="800"/>
-        <circle r="150" cx="652" cy="800"/>
-        <circle r="100" cx="652" cy="800"/>
-        <circle r="50"  cx="652" cy="800"/>
-      </g>
-      <g id="inner_circles">
-        <circle r="400" cx="1000" cy="1000" fill="white"/>
-        <circle r="350" cx="1000" cy="1000" fill="white"/>
-        <circle r="300" cx="1000" cy="1000" fill="white"/>
-        <circle r="250" cx="1000" cy="1000" fill="white"/>
-        <circle r="200" cx="1000" cy="1000" fill="white"/>
-        <circle r="150" cx="1000" cy="1000" fill="white"/>
-        <circle r="100" cx="1000" cy="1000" fill="white"/>
-        <circle r="50"  cx="1000" cy="1000" fill="white"/>
-        <!-- <circle r="400" cx="1000" cy="1000" fill="url(#purple_blue)"/>
-        <circle r="350" cx="1000" cy="1000" fill="url(#orange_mint)"/>
-        <circle r="300" cx="1000" cy="1000" fill="url(#orange_mint)"/>
-        <circle r="250" cx="1000" cy="1000" fill="url(#orange_mint)"/>
-        <circle r="200" cx="1000" cy="1000" fill="url(#orange_mint)"/>
-        <circle r="150" cx="1000" cy="1000" fill="url(#orange_mint)"/>
-        <circle r="100" cx="1000" cy="1000" fill="url(#orange_mint)"/>
-        <circle r="50"  cx="1000" cy="1000" fill="url(#orange_mint)"/> -->
-      </g>
+      
+      <path d="M 14 3376 L 759 3493 620 3859 14 3859 Z" fill="hsl(240deg 100% 90%)"/>
+      <path d="M 759 3493 L 1562 3514 1564 3859 620 3859 Z" fill="hsl(240deg 100% 80%)"/>
+      <path d="M 1562 3514 L 2426 3474 2652 3859 1564 3859 Z" fill="hsl(240deg 100% 85%)"/>
+      <path d="M 2426 3474 L 2758 3471 2758 3859 2651 3859 Z" fill="hsl(240deg 100% 90%)"/>
+
+      <path d="M 14 3051 L 122 3080 14 3194 Z" fill="hsl(240deg 100% 90%)"/>
+      <path d="M 14 3194 L 122 3080 861 3187 759 3493 14 3376 Z" fill="hsl(240deg 100% 80%)"/>
+      <path d="M 861 3187 L 1601 3232 1562 3514 759 3493 Z" fill="hsl(240deg 100% 85%)"/>
+      <path d="M 1601 3232 L 2417 3221 2426 3474 1562 3514 Z" fill="hsl(240deg 100% 90%)"/>
+      <path d="M 2417 3221 L 2757 3236 2758 3473 2426 3474 Z" fill="hsl(240deg 100% 80%)"/>
+      
+      <path d="M 14 2731 L 404 2771 122 3080 14 3051 Z" fill="hsl(240deg 100% 85%)"/>
+      <path d="M 404 2771 L 983 2934 861 3188 122 3080 Z" fill="hsl(240deg 100% 90%)"/>
+      <path d="M 983 2934 L 1635 2914 1601 3233 861 3188 Z" fill="hsl(240deg 100% 88%)"/>
+      <path d="M 1635 2914 L 2448 2989 2417 3223 1601 3233 Z" fill="hsl(240deg 100% 80%)"/>
+      <path d="M 2448 2989 L 2758 3005 2757 3237 2418 3223 Z" fill="hsl(240deg 100% 85%)"/>
+      
+      <path d="M 14 2477 L 82 2485 15 2551 Z" fill="hsl(240deg 100% 85%)"/>
+      <path d="M 82 2485 L 574 2577 405 2771 14 2732 14 2552 Z" fill="hsl(240deg 100% 82%)"/>
+      <path d="M 573 2578 L 1130 2601 982 2935 403 2772 Z" fill="hsl(240deg 100% 80%)"/>
+      <path d="M 1130 2602 L 1655 2690 1637 2916 981 2935 Z" fill="hsl(240deg 100% 85%)"/>
+      <path d="M 1654 2691 L 2354 2668 2447 2989 1637 2916 Z" fill="hsl(240deg 100% 87%)"/>
+      <path d="M 2354 2669 L 2758 2689 2758 3007 2447 2989 Z" fill="hsl(240deg 100% 90%)"/>
+      
+      <path d="M 15 2380 L 183 2407 81 2486 15 2477 Z" fill="hsl(240deg 100% 80%)"/>
+      <path d="M 182 2407 L 666 2480 574 2578 81 2487 Z" fill="hsl(240deg 100% 90%)"/>
+      <path d="M 665 2481 L 1216 2399 1130 2603 573 2579 Z" fill="hsl(240deg 100% 85%)"/>
+      <path d="M 1215 2400 L 1652 2398 1654 2690 1130 2603 Z" fill="hsl(240deg 100% 87%)"/>
+      <path d="M 1652 2400 L 2317 2519 2353 2670 1654 2691 Z" fill="hsl(240deg 100% 90%)"/>
+      <path d="M 2317 2519 L 2758 2502 2758 2689 2353 2670 Z" fill="hsl(240deg 100% 85%)"/>
+
+
+
+
+
+
+
+
     </g>
-
-
   </svg>
 </main>
 
