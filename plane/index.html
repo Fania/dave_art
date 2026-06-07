@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light"/>
+  <title>Dave Art</title>
+  <meta name="keywords" content="svg, art, ...">
+  <meta name="author" content="Fania Raczinski">
+  <meta name="description" content="">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="imgs/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="imgs/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="imgs/favicons/favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <meta property="og:title" content="TITLE" />
+  <meta property="og:type" content="website" />
+  <!-- <meta property="og:url" content="" /> -->
+  <!-- <meta property="og:image" content="" /> -->
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TITLE">
+  <!-- <meta name="twitter:image" content=""> -->
+
+  <link rel="stylesheet" href="styles.css"></link>
+  <script type="module" src="modules/clickListener.js"></script>
+  <script type="module" src="modules/coords.js"></script>
+
+</head>
+
+<body>
+
+<main>
+
+  <!-- <img src="dave_art.png" alt="original artwork by Dave"> -->
+
+  <svg id="svg" viewBox="0 0 2000 2000" width="2000" height="2000" preserveAspectRatio="xMidYMid meet" overflow="hidden">
+
+    <defs>
+        <!-- --purple: rgb(61 29 62   / 100%);
+            --mint:   rgb(81 173 119 / 100%);
+            --blue:   rgb(18 69 117  / 100%);
+            --orange: rgb(182 101 41 / 100%); -->
+      <linearGradient id="purple_blue"
+        gradientTransform="rotate(-60 .5 .5)">
+        <stop offset="0" stop-color="rgb(61 29 62 / 20%)"/>
+        <stop offset="0.5" stop-color="rgb(61 29 62 / 20%)"/>
+        <stop offset="0.5" stop-color="rgb(18 69 117 / 20%)"/>
+        <stop offset="1" stop-color="rgb(18 69 117 / 20%)"/>
+      </linearGradient>
+      <linearGradient id="orange_mint"
+        gradientTransform="rotate(-60 .5 .5)">
+        <stop offset="0" stop-color="rgb(81 173 119 / 20%)"/>
+        <stop offset="0.5" stop-color="rgb(81 173 119 / 20%)"/>
+        <stop offset="0.5" stop-color="rgb(182 101 41 / 20%)"/>
+        <stop offset="1" stop-color="rgb(182 101 41 / 20%)"/>
+      </linearGradient>
+
+      <animateMotion
+        xlink:href="#north_circles"
+        dur="12s"
+        begin="0s"
+        repeatCount="indefinite">
+        <mpath xlink:href="#animationPath"></mpath>
+      </animatemotion>
+      <animateMotion
+        xlink:href="#north_east_circles"
+        dur="12s"
+        begin="-2s"
+        repeatCount="indefinite">
+        <mpath xlink:href="#animationPath"></mpath>
+      </animatemotion>
+      <animateMotion
+        xlink:href="#south_east_circles"
+        dur="12s"
+        begin="-4s"
+        repeatCount="indefinite">
+        <mpath xlink:href="#animationPath"></mpath>
+      </animatemotion>
+      <animateMotion
+        xlink:href="#south_circles"
+        dur="12s"
+        begin="-6s"
+        repeatCount="indefinite">
+        <mpath xlink:href="#animationPath"></mpath>
+      </animatemotion>
+      <animateMotion
+        xlink:href="#south_west_circles"
+        dur="12s"
+        begin="-8s"
+        repeatCount="indefinite">
+        <mpath xlink:href="#animationPath"></mpath>
+      </animatemotion>
+      <animateMotion
+        xlink:href="#north_west_circles"
+        dur="12s"
+        begin="-10s"
+        repeatCount="indefinite">
+        <mpath xlink:href="#animationPath"></mpath>
+      </animatemotion>
+
+      <path id="animationPath" fill="none" stroke="red" stroke-width="10" d="M600,1000 a400,400 0 1,0 800,0 a400,400 0 1,0 -800,0"/>
+    </defs>
+
+    <g id="colour_blocks">
+      <g id="north_circles">
+        <circle r="400" cx="1000" cy="600"/>
+        <circle r="350" cx="1000" cy="600"/>
+        <circle r="300" cx="1000" cy="600"/>
+        <circle r="250" cx="1000" cy="600"/>
+        <circle r="200" cx="1000" cy="600"/>
+        <circle r="150" cx="1000" cy="600"/>
+        <circle r="100" cx="1000" cy="600"/>
+        <circle r="50"  cx="1000" cy="600"/>
+      </g>
+      <g id="north_east_circles">
+        <circle r="400" cx="1348" cy="800"/>
+        <circle r="350" cx="1348" cy="800"/>
+        <circle r="300" cx="1348" cy="800"/>
+        <circle r="250" cx="1348" cy="800"/>
+        <circle r="200" cx="1348" cy="800"/>
+        <circle r="150" cx="1348" cy="800"/>
+        <circle r="100" cx="1348" cy="800"/>
+        <circle r="50"  cx="1348" cy="800"/>
+      </g>
+      <g id="south_east_circles">
+        <circle r="400" cx="1348" cy="1200"/>
+        <circle r="350" cx="1348" cy="1200"/>
+        <circle r="300" cx="1348" cy="1200"/>
+        <circle r="250" cx="1348" cy="1200"/>
+        <circle r="200" cx="1348" cy="1200"/>
+        <circle r="150" cx="1348" cy="1200"/>
+        <circle r="100" cx="1348" cy="1200"/>
+        <circle r="50"  cx="1348" cy="1200"/>
+      </g>
+      <g id="south_circles">
+        <circle r="400" cx="1000" cy="1400"/>
+        <circle r="350" cx="1000" cy="1400"/>
+        <circle r="300" cx="1000" cy="1400"/>
+        <circle r="250" cx="1000" cy="1400"/>
+        <circle r="200" cx="1000" cy="1400"/>
+        <circle r="150" cx="1000" cy="1400"/>
+        <circle r="100" cx="1000" cy="1400"/>
+        <circle r="50"  cx="1000" cy="1400"/>
+      </g>
+      <g id="south_west_circles">
+        <circle r="400" cx="652" cy="1200"/>
+        <circle r="350" cx="652" cy="1200"/>
+        <circle r="300" cx="652" cy="1200"/>
+        <circle r="250" cx="652" cy="1200"/>
+        <circle r="200" cx="652" cy="1200"/>
+        <circle r="150" cx="652" cy="1200"/>
+        <circle r="100" cx="652" cy="1200"/>
+        <circle r="50"  cx="652" cy="1200"/>
+      </g>
+      <g id="north_west_circles">
+        <circle r="400" cx="652" cy="800"/>
+        <circle r="350" cx="652" cy="800"/>
+        <circle r="300" cx="652" cy="800"/>
+        <circle r="250" cx="652" cy="800"/>
+        <circle r="200" cx="652" cy="800"/>
+        <circle r="150" cx="652" cy="800"/>
+        <circle r="100" cx="652" cy="800"/>
+        <circle r="50"  cx="652" cy="800"/>
+      </g>
+      <g id="inner_circles">
+        <circle r="400" cx="1000" cy="1000" fill="white"/>
+        <circle r="350" cx="1000" cy="1000" fill="white"/>
+        <circle r="300" cx="1000" cy="1000" fill="white"/>
+        <circle r="250" cx="1000" cy="1000" fill="white"/>
+        <circle r="200" cx="1000" cy="1000" fill="white"/>
+        <circle r="150" cx="1000" cy="1000" fill="white"/>
+        <circle r="100" cx="1000" cy="1000" fill="white"/>
+        <circle r="50"  cx="1000" cy="1000" fill="white"/>
+        <!-- <circle r="400" cx="1000" cy="1000" fill="url(#purple_blue)"/>
+        <circle r="350" cx="1000" cy="1000" fill="url(#orange_mint)"/>
+        <circle r="300" cx="1000" cy="1000" fill="url(#orange_mint)"/>
+        <circle r="250" cx="1000" cy="1000" fill="url(#orange_mint)"/>
+        <circle r="200" cx="1000" cy="1000" fill="url(#orange_mint)"/>
+        <circle r="150" cx="1000" cy="1000" fill="url(#orange_mint)"/>
+        <circle r="100" cx="1000" cy="1000" fill="url(#orange_mint)"/>
+        <circle r="50"  cx="1000" cy="1000" fill="url(#orange_mint)"/> -->
+      </g>
+    </g>
+
+
+  </svg>
+</main>
+
+</body>
+</html>
