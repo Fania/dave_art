@@ -36,7 +36,7 @@ document.addEventListener("keydown", event => {
   if (event.key === "x") {
     console.log(coords_list);
     const [head, ...rest] = coords_list; 
-    const newpath = `<path d="M ${head} L ${rest.join(' ')} Z" fill="hsl(210deg 100% 75%)"/>`
+    const newpath = `<path d="M ${head} L ${rest.join(' ')} Z" fill="hsl(210deg 100% 25%)"/>`
 
     // navigator.clipboard.writeText(coords_list.join(' '));
     navigator.clipboard.writeText(newpath);
