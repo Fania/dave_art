@@ -32,10 +32,11 @@ function colourBall() {
 }
 
 
-function colourise(row, col) {
+function colourise(idx, row, col) {
   // const newCol = Math.floor(Math.random() * 360);
+  const lumin = Math.floor(Math.random() * 100);
   row.forEach(r => {
-    r.attributes['fill'].nodeValue = `hsl(${col}deg 100% ${Math.floor(Math.random() * 100)}%)`;
+    r.attributes['fill'].nodeValue = `hsl(${col}deg 100% ${lumin}%)`;
   });
 }
 
@@ -50,7 +51,7 @@ function reDraw() {
     console.log(`row ${idx}`);
     const [...paths] = row.children;
     setTimeout(()=> {
-      colourise(paths, newCol);
+      colourise(idx, paths, newCol);
     }, idx * 100);
   });
 }
