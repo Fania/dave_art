@@ -1,5 +1,3 @@
-console.log('stuff');
-
 
 const [...paths] = document.getElementsByTagName('path');
 const [...rows] = document.getElementsByClassName('rows');
@@ -7,13 +5,34 @@ const circ = document.getElementsByTagName('circle')[0];
 const ball = document.getElementById('ball');
 const stops = ball.children;
 
-// console.log(ball);
-// console.log(stops);
-// console.log(stops[0]);
-// console.log(paths);
-// console.log(rows);
-// console.dir(paths[0]);
-// console.dir(paths[0].attributes['fill'].nodeValue);
+
+
+
+function getRandomIntInclusive(min, max) {
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+}
+
+function add(a, b) { return a + b; } // helper function
+function getWeighedRandom(elems, weights) {
+  // get total weight (sum of all items in weights array)
+  const totalWeight = weights.reduce(add, 0);
+  const weighedElems = [];
+  let currentElem = 0;
+  while (currentElem < elems.length) {
+    for (let i = 0; i < weights[currentElem]; i++)
+      weighedElems[weighedElems.length] = elems[currentElem];
+    currentElem++;
+  }
+  // console.log('weighedElems',weighedElems);
+  const rnd = Math.floor(Math.random() * totalWeight);
+  // console.log('weighedElems[rnd]',weighedElems[rnd]);
+  return weighedElems[rnd];
+}
+
+
+
 
 
 
@@ -21,46 +40,122 @@ function colourBall() {
   let circCol = Math.floor(Math.random() * 360);
   circCol = circCol + 30 >= 360 ? 360 : circCol;
   const circColX = (circCol - 30 >= 0) ? circCol - 30 : 0;
-
   const circ1 = `hsl(${circCol}deg 100% 90%)`;
   const circ2 = `hsl(${circCol}deg 90% 50%)`;
   const circ3 = `hsl(${circColX}deg 100% 50%)`;
-
   stops[0].attributes['stop-color'].nodeValue = circ1;
   stops[1].attributes['stop-color'].nodeValue = circ2;
   stops[2].attributes['stop-color'].nodeValue = circ3;
 }
 
 
+// STYLE FUNCTIONS
+
 function colourise(idx, row, col) {
-  // const newCol = Math.floor(Math.random() * 360);
-  const lumin = Math.floor(Math.random() * 100);
   row.forEach(r => {
-    r.attributes['fill'].nodeValue = `hsl(${col}deg 100% ${lumin}%)`;
+    let lumin = 100 - (Math.floor(getRandomIntInclusive(1, 100)) + idx);
+    let sat = Math.floor(getRandomIntInclusive(20, 100));
+    console.log('lumin',lumin);
+    r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
   });
 }
 
-// setInterval(colouriseAll, 2000);
+function colouriseWhiteish(idx, row, col) {
+  row.forEach(r => {
+    idx==0 ? idx = 1 : idx = idx;
+    let sat = Math.floor(getRandomIntInclusive(20, 100));
+    let lumin = 100 - (Math.floor(getRandomIntInclusive(1, 100)) % idx);
+    console.log('lumin',lumin);
+    r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+  });
+}
+
+function colouriseBlackToColour(idx, row, col) {
+  row.forEach(r => {
+    let sat = Math.floor(getRandomIntInclusive(20, 100));
+    let lumin = Math.floor(getRandomIntInclusive(1, 100)) % idx;
+    console.log('lumin',lumin);
+    r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+  });
+}
+
+function colouriseBlackToBlack(idx, row, col) {
+  row.forEach(r => {
+    let sat = Math.floor(getRandomIntInclusive(20, 100));
+    let lumin = idx % Math.floor(getRandomIntInclusive(1, 100));
+    console.log('lumin',lumin);
+    r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+  });
+}
+
+function colouriseColourToWhite(idx, row, col) {
+  row.forEach(r => {
+    idx==0 ? idx = 1 : idx = idx;
+    let sat = Math.floor(getRandomIntInclusive(20, 100));
+    let lumin = Math.floor(getRandomIntInclusive(1, 100)) * (idx);
+    console.log('lumin',lumin);
+    r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+  });
+}
+
+function colouriseWhiteToColour(idx, row, col) {
+  row.forEach(r => {
+    idx==0 ? idx = 1 : idx = idx;
+    let sat = Math.floor(getRandomIntInclusive(20, 100));
+    let lumin = Math.floor(getRandomIntInclusive(0, 100)) * (100/idx);
+    // let lumin = Math.floor(getRandomIntInclusive(1, 100));
+    console.log('lumin',lumin);
+    r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+  });
+}
+
+function colourWholeGradient(idx, row, col) {
+  row.forEach(r => {
+    const val = 100 - idx;
+    let sat = Math.floor(getRandomIntInclusive(20, 100));
+    const lumin = Math.floor(getRandomIntInclusive(val, val));
+    console.log('lumin',lumin);
+    r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+  });
+}
+
+function colourStripes(idx, row, col) {
+  let sat = Math.floor(getRandomIntInclusive(20, 100));
+  const lumin = Math.floor(Math.random() * 100);
+  console.log('lumin',lumin);
+  row.forEach(r => {
+    r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+  });
+}
 
 
 
 
-function reDraw() {
+
+
+
+function reDraw(func) {
   const newCol = Math.floor(Math.random() * 360);
   rows.forEach((row, idx) => {
-    console.log(`row ${idx}`);
     const [...paths] = row.children;
     setTimeout(()=> {
-      colourise(idx, paths, newCol);
+      func(idx, paths, newCol);
     }, idx * 100);
   });
 }
 
 
-setInterval(()=> {
-  // colourise(paths);
-  reDraw();
-  colourBall();
-// }, 10000); // 10sec
-}, 2000); // 10sec
-// reDraw();
+// // MAIN GAME LOOP
+let freq = 100;
+const mainLoop = () => {
+    freq = getRandomIntInclusive(500, 20000);
+    const randFunc = getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes], [4,1,1,1,1,1,4,4]);
+    reDraw(randFunc);
+    colourBall();
+    setTimeout(mainLoop, freq);
+    console.log('freq', freq);
+    console.log('func', randFunc);
+}
+setTimeout(mainLoop, freq);
+
+// reDraw(colourise); // testing line
