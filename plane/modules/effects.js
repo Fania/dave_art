@@ -36,8 +36,9 @@ function getWeighedRandom(elems, weights) {
 
 
 
-function colourBall() {
-  let circCol = Math.floor(Math.random() * 360);
+function colourBall(col) {
+  // let circCol = Math.floor(Math.random() * 360);
+  let circCol = col;
   circCol = circCol + 30 >= 360 ? 360 : circCol;
   const circColX = (circCol - 30 >= 0) ? circCol - 30 : 0;
   const circ1 = `hsl(${circCol}deg 100% 90%)`;
@@ -152,6 +153,7 @@ function reDraw(func) {
     const [...paths] = row.children;
     setTimeout(()=> {
       func(idx, paths, newCol, randomNumber);
+      colourBall(newCol);
     }, idx * 100);
   });
 }
@@ -163,7 +165,7 @@ const mainLoop = () => {
     freq = getRandomIntInclusive(500, 20000);
     const randFunc = getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes, whiteOutlines, glitter], [4,1,1,1,1,1,4,4,1,3]);
     reDraw(randFunc);
-    colourBall();
+    // colourBall();
     setTimeout(mainLoop, freq);
     console.log('freq', freq);
     console.log('func', randFunc);
@@ -171,4 +173,4 @@ const mainLoop = () => {
 // setTimeout(mainLoop, freq);
 
 // reDraw(whiteOutlines); // testing line
-reDraw(glitter); // testing line
+// reDraw(glitter); // testing line
