@@ -11,15 +11,13 @@ const stops = ball.children;
 // console.log(stops);
 // console.log(stops[0]);
 // console.log(paths);
-console.log(rows);
+// console.log(rows);
 // console.dir(paths[0]);
 // console.dir(paths[0].attributes['fill'].nodeValue);
 
 
 
-function colouriseAll() {
-
-  const newCol = Math.floor(Math.random() * 360);
+function colourBall() {
   let circCol = Math.floor(Math.random() * 360);
   circCol = circCol + 30 >= 360 ? 360 : circCol;
   const circColX = (circCol - 30 >= 0) ? circCol - 30 : 0;
@@ -31,17 +29,13 @@ function colouriseAll() {
   stops[0].attributes['stop-color'].nodeValue = circ1;
   stops[1].attributes['stop-color'].nodeValue = circ2;
   stops[2].attributes['stop-color'].nodeValue = circ3;
-
-  paths.forEach(p => {
-    p.attributes['fill'].nodeValue = `hsl(${newCol}deg 100% ${Math.floor(Math.random() * 100)}%)`;
-  });
 }
 
 
-function colourise(group) {
-  const newCol = Math.floor(Math.random() * 360);
-  group.forEach(p => {
-    p.attributes['fill'].nodeValue = `hsl(${newCol}deg 100% ${Math.floor(Math.random() * 100)}%)`;
+function colourise(row, col) {
+  // const newCol = Math.floor(Math.random() * 360);
+  row.forEach(r => {
+    r.attributes['fill'].nodeValue = `hsl(${col}deg 100% ${Math.floor(Math.random() * 100)}%)`;
   });
 }
 
@@ -50,27 +44,22 @@ function colourise(group) {
 
 
 
-rows.forEach((row, idx) => {
-  // console.log(row.children);
-  console.log(`row ${idx}`);
-  // console.log(idx);
-  // console.log(row);
-  const [...paths] = row.children;
-  // setTimeout(()=>colourise(paths), 5000);
-  // setInterval(colourise(paths), 5000);
+function reDraw() {
+  const newCol = Math.floor(Math.random() * 360);
+  rows.forEach((row, idx) => {
+    console.log(`row ${idx}`);
+    const [...paths] = row.children;
+    setTimeout(()=> {
+      colourise(paths, newCol);
+    }, idx * 100);
+  });
+}
+
+
+setInterval(()=> {
   // colourise(paths);
-  // row.wait(1000);
-
-  setTimeout(()=> {
-    colourise(paths);
-    // console.log(el);
-  }, idx * 100);
-
-});
-
-// var array = ['some', 'array', 'containing', 'words'];
-// array.forEach(function (el) {
-//   console.log(el);
-//   wait(1000); // wait 1000 milliseconds
-// });
-// console.log('Loop finished.');
+  reDraw();
+  colourBall();
+// }, 10000); // 10sec
+}, 2000); // 10sec
+// reDraw();
