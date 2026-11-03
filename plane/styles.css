@@ -11,8 +11,8 @@ body {
   height: 100vh;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
-  /* background: rgb(36, 31, 35); */
+  justify-content: center;
+  background: rgb(36, 31, 35);
 }
 
 /* 744 × 752 */
@@ -44,7 +44,8 @@ svg text {
 
 svg path {
   /* fill: none; */
-  stroke: none;
+  /* stroke: transparent; */
+  stroke-width: 4;
 }
 
 /* svg circle stop {

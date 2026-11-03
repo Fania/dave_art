@@ -51,95 +51,107 @@ function colourBall() {
 
 // STYLE FUNCTIONS
 
-function colourise(idx, row, col) {
+function colourise(idx, row, col, strk) {
   row.forEach(r => {
     let lumin = 100 - (Math.floor(getRandomIntInclusive(1, 100)) + idx);
     let sat = Math.floor(getRandomIntInclusive(20, 100));
-    console.log('lumin',lumin);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+    r.setAttribute('stroke', ['rgba(0,0,0,.4)','none'][strk]);
   });
 }
 
-function colouriseWhiteish(idx, row, col) {
+function colouriseWhiteish(idx, row, col, strk) {
   row.forEach(r => {
     idx==0 ? idx = 1 : idx = idx;
     let sat = Math.floor(getRandomIntInclusive(20, 100));
     let lumin = 100 - (Math.floor(getRandomIntInclusive(1, 100)) % idx);
-    console.log('lumin',lumin);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+    r.setAttribute('stroke', ['rgba(0,0,0,.4)','none'][strk]);
   });
 }
 
-function colouriseBlackToColour(idx, row, col) {
+function colouriseBlackToColour(idx, row, col, strk) {
   row.forEach(r => {
     let sat = Math.floor(getRandomIntInclusive(20, 100));
     let lumin = Math.floor(getRandomIntInclusive(1, 100)) % idx;
-    console.log('lumin',lumin);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+    r.setAttribute('stroke', ['rgba(0,0,0,.4)','none'][strk]);
   });
 }
 
-function colouriseBlackToBlack(idx, row, col) {
+function colouriseBlackToBlack(idx, row, col, strk) {
   row.forEach(r => {
     let sat = Math.floor(getRandomIntInclusive(20, 100));
     let lumin = idx % Math.floor(getRandomIntInclusive(1, 100));
-    console.log('lumin',lumin);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+    r.setAttribute('stroke', ['rgba(0,0,0,.4)','none'][strk]);
   });
 }
 
-function colouriseColourToWhite(idx, row, col) {
+function colouriseColourToWhite(idx, row, col, strk) {
   row.forEach(r => {
     idx==0 ? idx = 1 : idx = idx;
     let sat = Math.floor(getRandomIntInclusive(20, 100));
     let lumin = Math.floor(getRandomIntInclusive(1, 100)) * (idx);
-    console.log('lumin',lumin);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+    r.setAttribute('stroke', ['rgba(0,0,0,.4)','none'][strk]);
   });
 }
 
-function colouriseWhiteToColour(idx, row, col) {
+function colouriseWhiteToColour(idx, row, col, strk) {
   row.forEach(r => {
     idx==0 ? idx = 1 : idx = idx;
     let sat = Math.floor(getRandomIntInclusive(20, 100));
     let lumin = Math.floor(getRandomIntInclusive(0, 100)) * (100/idx);
-    // let lumin = Math.floor(getRandomIntInclusive(1, 100));
-    console.log('lumin',lumin);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+    r.setAttribute('stroke', ['rgba(0,0,0,.4)','none'][strk]);
   });
 }
 
-function colourWholeGradient(idx, row, col) {
+function colourWholeGradient(idx, row, col, strk) {
   row.forEach(r => {
     const val = 100 - idx;
     let sat = Math.floor(getRandomIntInclusive(20, 100));
     const lumin = Math.floor(getRandomIntInclusive(val, val));
-    console.log('lumin',lumin);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+    r.setAttribute('stroke', ['rgba(0,0,0,.4)','none'][strk]);
   });
 }
 
-function colourStripes(idx, row, col) {
+function colourStripes(idx, row, col, strk) {
   let sat = Math.floor(getRandomIntInclusive(20, 100));
   const lumin = Math.floor(Math.random() * 100);
-  console.log('lumin',lumin);
   row.forEach(r => {
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+    r.setAttribute('stroke', ['rgba(0,0,0,.4)','none'][strk]);
   });
 }
 
+function whiteOutlines(idx, row, col, strk) {
+  row.forEach(r => {
+    r.setAttribute('fill', `white`);
+    r.setAttribute('stroke', `black`);
+  });
+}
 
-
+function glitter(idx, row, col, strk) {
+  const randFunc = getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes, whiteOutlines], [4,1,1,1,1,1,4,4,1]);
+  const glitterID = setInterval(()=> {
+    randFunc(idx, row, col, strk);
+  }, 1000);
+  // clearInterval(glitterID);
+}
 
 
 
 
 function reDraw(func) {
   const newCol = Math.floor(Math.random() * 360);
+  const randomNumber = Math.round(Math.random());
   rows.forEach((row, idx) => {
     const [...paths] = row.children;
     setTimeout(()=> {
-      func(idx, paths, newCol);
+      func(idx, paths, newCol, randomNumber);
     }, idx * 100);
   });
 }
@@ -149,13 +161,14 @@ function reDraw(func) {
 let freq = 100;
 const mainLoop = () => {
     freq = getRandomIntInclusive(500, 20000);
-    const randFunc = getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes], [4,1,1,1,1,1,4,4]);
+    const randFunc = getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes, whiteOutlines, glitter], [4,1,1,1,1,1,4,4,1,3]);
     reDraw(randFunc);
     colourBall();
     setTimeout(mainLoop, freq);
     console.log('freq', freq);
     console.log('func', randFunc);
 }
-setTimeout(mainLoop, freq);
+// setTimeout(mainLoop, freq);
 
-// reDraw(colourise); // testing line
+// reDraw(whiteOutlines); // testing line
+reDraw(glitter); // testing line
