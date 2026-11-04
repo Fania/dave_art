@@ -203,11 +203,9 @@ const mainLoop = () => {
     const randFunc = getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes, whiteOutlines, glitter], [4,1,1,1,1,1,4,4,1,3]);
     const testFuncs = getWeighedRandom([colourise, glitter], [1,1]);
     reDraw(randFunc);
-    // reDraw(testFuncs);
     setTimeout(mainLoop, freq);
     console.log('freq', freq);
     console.log('func', randFunc.name);
-    // console.log('func', testFuncs.name);
 }
 
 const testLoop = () => {
@@ -223,7 +221,7 @@ const testLoop = () => {
 
 
 // COMMANDS TO START RUNNING
-// setTimeout(mainLoop, freq);
+setTimeout(mainLoop, freq);
 // setTimeout(testLoop, freq);
 
 // reDraw(whiteOutlines); // testing line

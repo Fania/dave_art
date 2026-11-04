@@ -9,24 +9,29 @@
 body {
   margin: 0;
   height: 100vh;
+  background: rgb(36, 31, 35);
+}
+
+main {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(36, 31, 35);
 }
 
 /* 744 × 752 */
 img {
   /* width: 100%; */
-  height: auto;
+  /* height: auto; */
   position: absolute;
   top: 0; bottom: 0; left: 0; right: 0;
   opacity: 1;
 }
 
 svg {
-  /* width: 100%; */
-  height: auto;
+  width: 100%;
+  /* height: auto; */
+  max-height: 96vh;
   /* position: absolute; */
   /* top: 0; bottom: 0; left: 0; right: 0; */
   opacity: 1;
