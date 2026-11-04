@@ -199,22 +199,21 @@ function reDraw(func) {
 // // MAIN GAME LOOP
 let freq = 100;
 const mainLoop = () => {
-    freq = getRandomIntInclusive(500, 20000);
-    const randFunc = getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes, whiteOutlines, glitter], [4,1,1,1,1,1,4,4,1,3]);
-    const testFuncs = getWeighedRandom([colourise, glitter], [1,1]);
-    reDraw(randFunc);
-    setTimeout(mainLoop, freq);
-    console.log('freq', freq);
-    console.log('func', randFunc.name);
+  freq = getRandomIntInclusive(500, 20000);
+  const randFunc = getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes, whiteOutlines, glitter], [4,1,1,1,1,1,4,4,1,3]);
+  reDraw(randFunc);
+  setTimeout(mainLoop, freq);
+  console.log('freq', freq);
+  console.log('func', randFunc.name);
 }
 
 const testLoop = () => {
-    freq = getRandomIntInclusive(500, 6000);
-    const testFuncs = getWeighedRandom([colourise, glitter], [1,1]);
-    reDraw(testFuncs);
-    setTimeout(testLoop, freq);
-    console.log('freq', freq);
-    console.log('func', testFuncs.name);
+  freq = getRandomIntInclusive(500, 6000);
+  const testFuncs = getWeighedRandom([colourise, glitter], [1,1]);
+  reDraw(testFuncs);
+  setTimeout(testLoop, freq);
+  console.log('freq', freq);
+  console.log('func', testFuncs.name);
 }
 
 
