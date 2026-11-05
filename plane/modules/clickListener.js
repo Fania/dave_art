@@ -1,8 +1,12 @@
 const my_svg = document.getElementById('svg');
 const [...blocks] = document.getElementById('colour_blocks').children;
 // const [...gradients] = document.getElementById('gradients').children;
+const [...rows] = document.getElementsByClassName('rows');
+const [...paths] = document.getElementsByTagName('path');
 
-console.log(`There are a total of ${blocks.length} colour blocks.`);
+// console.log(`There are a total of ${blocks.length} colour blocks.`);
+console.log(`There are a total of ${rows.length} rows.`);
+console.log(`There are a total of ${paths.length} fields.`);
 // console.log(`And there are ${gradients.length} unique gradients.`);
 
 

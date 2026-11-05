@@ -117,16 +117,34 @@ function colouriseWhiteToColour(idx, row, col, strk) {
   return 0;
 }
 
+
+function* calcDepth(idx) {
+  console.log(rows.length/100);
+  yield (rows.length/100);
+}
+calcDepth(0);
+
 function colourWholeGradient(idx, row, col, strk) {
+  let sat = Math.floor(getRandomIntInclusive(20, 100));
   row.forEach(r => {
     const val = 100 - idx;
-    let sat = Math.floor(getRandomIntInclusive(20, 100));
     const lumin = Math.floor(getRandomIntInclusive(val, val));
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
     r.setAttribute('stroke', ['none','rgba(0,0,0,.4)'][strk]);
   });
   return 0;
 }
+
+// function colourWholeGradient(idx, row, col, strk) {
+//   row.forEach(r => {
+//     const val = 100 - idx;
+//     let sat = Math.floor(getRandomIntInclusive(20, 100));
+//     const lumin = Math.floor(getRandomIntInclusive(val, val));
+//     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
+//     r.setAttribute('stroke', ['none','rgba(0,0,0,.4)'][strk]);
+//   });
+//   return 0;
+// }
 
 function colourStripes(idx, row, col, strk) {
   let sat = Math.floor(getRandomIntInclusive(20, 100));
@@ -208,12 +226,13 @@ const mainLoop = () => {
 }
 
 const testLoop = () => {
-  freq = getRandomIntInclusive(500, 6000);
-  const testFuncs = getWeighedRandom([colourise, glitter], [1,1]);
-  reDraw(testFuncs);
-  setTimeout(testLoop, freq);
-  console.log('freq', freq);
-  console.log('func', testFuncs.name);
+    freq = getRandomIntInclusive(500, 6000);
+    // const testFuncs = getWeighedRandom([colourise, glitter], [1,1]);
+    const testFuncs = colourWholeGradient;
+    reDraw(testFuncs);
+    setTimeout(testLoop, freq);
+    console.log('freq', freq);
+    console.log('func', testFuncs.name);
 }
 
 
