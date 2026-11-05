@@ -33,7 +33,9 @@ function getWeighedRandom(elems, weights) {
   return weighedElems[rnd];
 }
 
-
+function* norm(idx) {
+  yield (idx - 0) / (rows.length - 0) * 100;
+}
 
 
 
@@ -117,15 +119,8 @@ function colouriseWhiteToColour(idx, row, col, strk) {
   return 0;
 }
 
-
-function* calcDepth(idx) {
-  console.log(rows.length/100);
-  yield (rows.length/100);
-}
-calcDepth(0);
-
 function colourWholeGradient(idx, row, col, strk) {
-  let sat = Math.floor(getRandomIntInclusive(20, 100));
+  let sat = norm(idx).next().value;
   row.forEach(r => {
     const val = 100 - idx;
     const lumin = Math.floor(getRandomIntInclusive(val, val));
@@ -134,17 +129,6 @@ function colourWholeGradient(idx, row, col, strk) {
   });
   return 0;
 }
-
-// function colourWholeGradient(idx, row, col, strk) {
-//   row.forEach(r => {
-//     const val = 100 - idx;
-//     let sat = Math.floor(getRandomIntInclusive(20, 100));
-//     const lumin = Math.floor(getRandomIntInclusive(val, val));
-//     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
-//     r.setAttribute('stroke', ['none','rgba(0,0,0,.4)'][strk]);
-//   });
-//   return 0;
-// }
 
 function colourStripes(idx, row, col, strk) {
   let sat = Math.floor(getRandomIntInclusive(20, 100));
