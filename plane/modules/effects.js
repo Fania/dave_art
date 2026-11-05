@@ -37,8 +37,21 @@ function* norm(idx) {
   yield (idx - 0) / (rows.length - 0) * 100;
 }
 
+function* normCol(idx, col) {
+  const lum = (idx - 0) / ((rows.length * 2) - 0) * 100;
+  // console.log('inside normCol idx, lum', idx, lum);
+  yield `hsl(${col}deg 100% ${lum}%)`
+}
 
+// console.log(normCol(0, 200).next().value);
+// console.log(normCol(20, 200).next().value);
+// console.log(normCol(40, 200).next().value);
+// console.log(normCol(67, 200).next().value);
 
+function getStroke(idx, col) {
+  let newCol = normCol(idx, col).next().value;
+  return getWeighedRandom['none','rgba(0,0,0,.4)',newCol],[2,1,2];
+}
 
 function colourBall(col) {
   // let circCol = Math.floor(Math.random() * 360);
@@ -54,14 +67,16 @@ function colourBall(col) {
 }
 
 
+
 // STYLE FUNCTIONS
 
 function colourise(idx, row, col, strk) {
   row.forEach(r => {
     let lumin = 100 - (Math.floor(getRandomIntInclusive(1, 100)) + idx);
     let sat = Math.floor(getRandomIntInclusive(20, 100));
+    let currStroke = getStroke(idx, col);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
-    r.setAttribute('stroke', ['none','rgba(0,0,0,.4)'][strk]);
+    r.setAttribute('stroke', currStroke);
   });
   return 0;
 }
@@ -71,8 +86,9 @@ function colouriseWhiteish(idx, row, col, strk) {
     idx==0 ? idx = 1 : idx = idx;
     let sat = Math.floor(getRandomIntInclusive(20, 100));
     let lumin = 100 - (Math.floor(getRandomIntInclusive(1, 100)) % idx);
+    let currStroke = getStroke(idx, col);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
-    r.setAttribute('stroke', ['none','rgba(0,0,0,.4)'][strk]);
+    r.setAttribute('stroke', currStroke);
   });
   return 0;
 }
@@ -81,8 +97,9 @@ function colouriseBlackToColour(idx, row, col, strk) {
   row.forEach(r => {
     let sat = Math.floor(getRandomIntInclusive(20, 100));
     let lumin = Math.floor(getRandomIntInclusive(1, 100)) % idx;
+    let currStroke = getStroke(idx, col);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
-    r.setAttribute('stroke', ['none','rgba(0,0,0,.4)'][strk]);
+    r.setAttribute('stroke', currStroke);
   });
   return 0;
 }
@@ -91,8 +108,9 @@ function colouriseBlackToBlack(idx, row, col, strk) {
   row.forEach(r => {
     let sat = Math.floor(getRandomIntInclusive(20, 100));
     let lumin = idx % Math.floor(getRandomIntInclusive(1, 100));
+    let currStroke = getStroke(idx, col);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
-    r.setAttribute('stroke', ['none','rgba(0,0,0,.4)'][strk]);
+    r.setAttribute('stroke', currStroke);
   });
   return 0;
 }
@@ -102,8 +120,9 @@ function colouriseColourToWhite(idx, row, col, strk) {
     idx==0 ? idx = 1 : idx = idx;
     let sat = Math.floor(getRandomIntInclusive(20, 100));
     let lumin = Math.floor(getRandomIntInclusive(1, 100)) * (idx);
+    let currStroke = getStroke(idx, col);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
-    r.setAttribute('stroke', ['none','rgba(0,0,0,.4)'][strk]);
+    r.setAttribute('stroke', currStroke);
   });
   return 0;
 }
@@ -113,8 +132,9 @@ function colouriseWhiteToColour(idx, row, col, strk) {
     idx==0 ? idx = 1 : idx = idx;
     let sat = Math.floor(getRandomIntInclusive(20, 100));
     let lumin = Math.floor(getRandomIntInclusive(0, 100)) * (100/idx);
+    let currStroke = getStroke(idx, col);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
-    r.setAttribute('stroke', ['none','rgba(0,0,0,.4)'][strk]);
+    r.setAttribute('stroke', currStroke);
   });
   return 0;
 }
@@ -124,8 +144,9 @@ function colourWholeGradient(idx, row, col, strk) {
   row.forEach(r => {
     const val = 100 - idx;
     const lumin = Math.floor(getRandomIntInclusive(val, val));
+    let currStroke = getStroke(idx, col);
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
-    r.setAttribute('stroke', ['none','rgba(0,0,0,.4)'][strk]);
+    r.setAttribute('stroke', currStroke);
   });
   return 0;
 }
@@ -133,9 +154,10 @@ function colourWholeGradient(idx, row, col, strk) {
 function colourStripes(idx, row, col, strk) {
   let sat = Math.floor(getRandomIntInclusive(20, 100));
   const lumin = Math.floor(Math.random() * 100);
+  let currStroke = getStroke(idx, col);
   row.forEach(r => {
     r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lumin}%)`;
-    r.setAttribute('stroke', ['none','rgba(0,0,0,.4)'][strk]);
+    r.setAttribute('stroke', currStroke);
   });
   return 0;
 }
@@ -149,9 +171,30 @@ function whiteOutlines(idx, row, col, strk) {
   return 0;
 }
 
+function coulourOutlines(idx, row, col, strk) {
+  row.forEach(r => {
+    r.setAttribute('fill', `white`);
+    r.setAttribute('stroke', `hsl(${(col + 180) % 360}deg 100% 50%)`);
+  });
+  console.log('with coloured stroke');
+  return 0;
+}
+
+function strokeGradient(idx, row, col, strk) {
+  row.forEach(r => {
+    let currCol = normCol(idx, (col + 180) % 360).next().value;
+    // let currCol = 100;
+    // console.log('inside strokeGradient currCol',currCol);
+    r.setAttribute('fill', `white`);
+    r.setAttribute('stroke', currCol);
+  });
+  console.log('with coloured stroke');
+  return 0;
+}
+
 
 function glitter(idx, row, col, strk) {
-  const randFunc = getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes, whiteOutlines], [4,1,1,1,1,1,4,4,1]);
+  const randFunc = getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes, whiteOutlines, coulourOutlines, strokeGradient], [4,1,1,1,1,1,4,4,1,2,4]);
   let glitterID = setInterval(()=> {
     randFunc(idx, row, col, strk);
   }, 1000);
@@ -183,7 +226,7 @@ function reDraw(func) {
   // console.log('inside reDraw',func.name);
   const newCol = Math.floor(Math.random() * 360);
   // const randomNumber = Math.round(Math.random());
-  const strk = getWeighedRandom([0,1],[3,1]);
+  const strk = getWeighedRandom([0,1],[5,1]);
   strk==0? console.log('no stroke') : console.log('with stroke');
   rows.forEach((row, idx) => {
     const [...paths] = row.children;
@@ -202,7 +245,7 @@ function reDraw(func) {
 let freq = 100;
 const mainLoop = () => {
   freq = getRandomIntInclusive(500, 20000);
-  const randFunc = getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes, whiteOutlines, glitter], [4,1,1,1,1,1,4,4,1,3]);
+  const randFunc = getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes, whiteOutlines, glitter, coulourOutlines, strokeGradient], [4,1,1,1,1,1,4,4,1,3,2,4]);
   reDraw(randFunc);
   setTimeout(mainLoop, freq);
   console.log('freq', freq);
@@ -212,7 +255,8 @@ const mainLoop = () => {
 const testLoop = () => {
     freq = getRandomIntInclusive(500, 6000);
     // const testFuncs = getWeighedRandom([colourise, glitter], [1,1]);
-    const testFuncs = colourWholeGradient;
+    // const testFuncs = colourWholeGradient;
+    const testFuncs = strokeGradient;
     reDraw(testFuncs);
     setTimeout(testLoop, freq);
     console.log('freq', freq);
