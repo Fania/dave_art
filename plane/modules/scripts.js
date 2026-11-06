@@ -85,16 +85,18 @@ export function clearoutTime(ids) {
 
 
 
-export function reDraw(func) {
+export function reDrawNew(type) {
   // console.log('inside reDraw',func.name);
+  console.log('inside reDraw',type);
   const newCol = Math.floor(Math.random() * 360);
   // const randomNumber = Math.round(Math.random());
-  const strk = getWeighedRandom([0,1],[5,1]);
+  // const strk = getWeighedRandom([0,1],[5,1]);
+  const strk = getWeighedRandom([0,1],[1,1]);
   strk==0? console.log('no stroke') : console.log('with stroke');
   rows.forEach((row, idx) => {
     const [...paths] = row.children;
     let timerID = setTimeout(()=> {
-      func(idx, paths, newCol, strk);
+      ffs.style(type, idx, paths, newCol, strk);
     }, idx * 100);
     timerIDs.push(timerID);
   });
@@ -103,40 +105,61 @@ export function reDraw(func) {
   clearoutInt(glitterIDs);
 }
 
+// export function reDraw(func) {
+//   // console.log('inside reDraw',func.name);
+//   const newCol = Math.floor(Math.random() * 360);
+//   // const randomNumber = Math.round(Math.random());
+//   const strk = getWeighedRandom([0,1],[5,1]);
+//   strk==0? console.log('no stroke') : console.log('with stroke');
+//   rows.forEach((row, idx) => {
+//     const [...paths] = row.children;
+//     let timerID = setTimeout(()=> {
+//       func(idx, paths, newCol, strk);
+//     }, idx * 100);
+//     timerIDs.push(timerID);
+//   });
+//   ffs.colourBall(newCol);
+//   // clearoutTime(timerIDs);
+//   clearoutInt(glitterIDs);
+// }
 
 // // MAIN GAME LOOP
 let freq = 100;
 const mainLoop = () => {
   freq = getRandomIntInclusive(500, 20000);
   const randFunc = getWeighedRandom([
-    ffs.colourise, 
-    ffs.colouriseWhiteish, 
-    ffs.colouriseBlackToColour, 
-    ffs.colouriseBlackToBlack, 
-    ffs.colouriseColourToWhite, 
-    ffs.colouriseWhiteToColour, 
-    ffs.colourWholeGradient, 
-    ffs.colourStripes, 
-    ffs.whiteOutlines, 
-    ffs.glitter, 
-    ffs.colourOutlines, 
-    ffs.strokeGradient
+    'colourise', 
+    'colouriseWhiteish', 
+    'colouriseBlackToColour', 
+    'colouriseBlackToBlack', 
+    'colouriseColourToWhite', 
+    'colouriseWhiteToColour', 
+    'colourWholeGradient', 
+    'colourStripes', 
+    'whiteOutlines', 
+    'glitter', 
+    'colourOutlines', 
+    'strokeGradient'
   ], [4,1,1,1,1,1,4,4,1,3,2,4]);
-  reDraw(randFunc);
+  reDrawNew(randFunc);
   setTimeout(mainLoop, freq);
   console.log('freq', freq);
-  console.log('func', randFunc.name);
+  // console.log('func', randFunc.name);
 }
 
 const testLoop = () => {
     freq = getRandomIntInclusive(500, 6000);
     // const testFuncs = getWeighedRandom([colourise, glitter], [1,1]);
-    // const testFuncs = colourWholeGradient;
-    const testFuncs = ffs.strokeGradient;
-    reDraw(testFuncs);
+    const testFuncs = ['colourise','colouriseWhiteish','colouriseBlackToColour','colouriseBlackToBlack','colouriseColourToWhite','colouriseWhiteToColour','colourWholeGradient','colourStripes','whiteOutlines','colourOutlines','strokeGradient'];
+    // const testFuncs = ffs.colourise;
+    // const testFuncs = 'colourise';
+    
+    reDrawNew(testFuncs[10]);
     setTimeout(testLoop, freq);
+
     console.log('freq', freq);
-    console.log('func', testFuncs.name);
+    // console.log('func', testFuncs.name);
+    // console.log('func', testFuncs);
 }
 
 
@@ -144,7 +167,7 @@ const testLoop = () => {
 
 // COMMANDS TO START RUNNING
 // setTimeout(mainLoop, freq);
-setTimeout(testLoop, freq);
+// setTimeout(testLoop, freq);
 
 // reDraw(whiteOutlines); // testing line
 // reDraw(glitter); // testing line

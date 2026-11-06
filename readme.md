@@ -7,6 +7,10 @@ Based on Dave Everitt's artwork.
 
 ## Todo
 
+- [ ] remove colouriseWhitish
+- [ ] diff between blacktoblack and blacktocolour???
+- [ ] with or without stroke hardcoded into styles
+- [ ] why is with stroke using stroke gradient?
 - [ ] fix glitter to only take black outline lines
 - [ ] fix random selection combinations, i.e. line colour, fill, gradient, etc
 - [ ] change random freqs
