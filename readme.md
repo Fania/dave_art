@@ -3,7 +3,7 @@
 Based on Dave Everitt's artwork.
 
 
-![Dave's image in digital form](dave_original.jpeg)
+![Dave's image in digital form](/plane/imgs/dave_original.jpeg)
 
 ## Todo
 
