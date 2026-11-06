@@ -6,6 +6,76 @@ const ball = document.getElementById('ball');
 const stops = ball.children;
 
 
+export const fillThings = {
+  'colourise': {
+    'col': 0,
+    'lum': 100 - (Math.floor(hlp.getRandomIntInclusive(1, 100)) + idx),
+    'sat': Math.floor(hlp.getRandomIntInclusive(20, 100)),
+    'row': 'each'
+  },
+  'colouriseWhiteish': {
+    'col': 0,
+    'idx': idx==0 ? idx = 1 : idx = idx,
+    'lum': 100 - (Math.floor(hlp.getRandomIntInclusive(1, 100)) % idx),
+    'sat': Math.floor(hlp.getRandomIntInclusive(20, 100)),
+    'row': 'each'
+  },
+  'colouriseBlackToColour': {
+    'col': 0,
+    'lum': idx % Math.floor(hlp.getRandomIntInclusive(1, 100)),
+    'sat': Math.floor(hlp.getRandomIntInclusive(20, 100)),
+    'row': 'each'
+  },
+  'colouriseColourToWhite': {
+    'col': 0,
+    'lum': Math.floor(hlp.getRandomIntInclusive(1, 100)) * (idx),
+    'sat': Math.floor(hlp.getRandomIntInclusive(20, 100)),
+    'row': 'each'
+  },
+  'colouriseWhiteToColour': {
+    'col': 0,
+    'lum': Math.floor(hlp.getRandomIntInclusive(0, 100)) * (100/idx),
+    'sat': Math.floor(hlp.getRandomIntInclusive(20, 100)),
+    'row': 'each'
+  },
+  'colourWholeGradient': {
+    'col': 0,
+    'lum': Math.floor(hlp.getRandomIntInclusive(val, val)),
+    'sat': hlp.norm(idx).next().value,
+    'row': 'each'
+  },
+  'colourStripes': {
+    'col': 0,
+    'lum': Math.floor(Math.random() * 100),
+    'sat': Math.floor(hlp.getRandomIntInclusive(20, 100)),
+    'row': 'each'
+  },
+  'whiteOutlines': {
+    'col': 0,
+    'lum': 0,
+    'sat': 0,
+    'row': 'each'
+  },
+  'colourOutlines': {
+    'col': (col + 180) % 360,
+    'lum': 0,
+    'sat': 0,
+    'row': 'each'
+  },
+  'strokeGradient': {
+    'col': hlp.normColInv(idx, (col + 180) % 360).next().value,
+    'lum': 0,
+    'sat': 0,
+    'row': 'each'
+  }
+};
+
+
+
+
+
+
+
 
 export function colourBall(col) {
   // let circCol = Math.floor(Math.random() * 360);
@@ -23,6 +93,22 @@ export function colourBall(col) {
 
 
 // STYLE export functionS
+
+
+export function style(type, idx, col) {
+  row.forEach(r => {
+    let lum = fillThings[type].lum;
+    let sat = fillThings[type].sat;
+    r.attributes['fill'].nodeValue = `hsl(${col}deg ${sat}% ${lum}%)`;
+    r.setAttribute('stroke', hlp.getStroke(idx, col));
+  });
+}
+
+
+style('colourise', 0, 0);
+
+
+
 
 export function colourise(idx, row, col, strk) {
   row.forEach(r => {
