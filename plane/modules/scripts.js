@@ -42,7 +42,10 @@ export function getWeighedRandom(elems, weights) {
 
 
 export function* norm(idx) {
-  yield (idx - 0) / (rows.length - 0) * 100;
+  yield (idx) / (rows.length) * 100;
+}
+export function* normCell(i,len) {
+  yield (i) / (len) * 100;
 }
 
 
@@ -88,19 +91,20 @@ export function clearoutTime(ids) {
 export function reDrawNew(type) {
   // console.log('inside reDraw',func.name);
   console.log('inside reDraw',type);
-  const newCol = Math.floor(Math.random() * 360);
+  const hue = Math.floor(Math.random() * 360);
   // const randomNumber = Math.round(Math.random());
   // const strk = getWeighedRandom([0,1],[5,1]);
-  const strk = getWeighedRandom([0,1],[1,1]);
-  strk==0? console.log('no stroke') : console.log('with stroke');
+  // const strk = getWeighedRandom([0,1],[1,1]);
+  // strk==0? console.log('no stroke') : console.log('with stroke');
   rows.forEach((row, idx) => {
     const [...paths] = row.children;
     let timerID = setTimeout(()=> {
-      ffs.style(type, idx, paths, newCol, strk);
+      ffs.fillStyle(type, idx, paths, hue);
+      // ffs.strokeStyle(type, idx, paths, hue);
     }, idx * 100);
     timerIDs.push(timerID);
   });
-  ffs.colourBall(newCol);
+  ffs.colourBall(hue);
   // clearoutTime(timerIDs);
   clearoutInt(glitterIDs);
 }
@@ -147,14 +151,14 @@ const mainLoop = () => {
 
 const testLoop = () => {
     // freq = getRandomIntInclusive(500, 6000);
-    freq = 1000000;
+    freq = 20000;
     // const testFuncs = getWeighedRandom([colourise, glitter], [1,1]);
     const testFuncs = ['harlequin','bright','inkflood','inkstain','milkstain','milkGradient','stripes','snow','outlines','gradientOutlines'];
     // const testFuncs = ffs.colourise;
     // const testFuncs = 'colourise';
     
     // reDrawNew(testFuncs[10]);
-    reDrawNew('inkGradient');
+    reDrawNew('sideGradient');
     // reDrawNew('milkGradient');
     setTimeout(testLoop, freq);
 

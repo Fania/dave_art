@@ -23,19 +23,3 @@ Based on Dave Everitt's artwork.
 - [x] fix gradients
 
 
-
-
-
-
-00 'colourise', harlequin
-01 'colouriseColourToWhite', bright
-02 'colouriseBlackToColour', inkflood
-03 'colouriseBlackToBlack', inkstain
-04 'colouriseWhiteToColour', milkstain
-04 '', milkflood?
-05 'colourWholeGradient', gradient
-06 'colourStripes', stripes
-07 'whiteOutlines', snow
-08 'colourOutlines', outlines
-09 'strokeGradient' gradientOutlines
-10 'glitter', 

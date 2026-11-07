@@ -10,47 +10,38 @@ export const fillThings = {
   'harlequin': {
     'sat': () => Math.floor(hlp.getRandomIntInclusive(20, 100)),
     'lum': (idx) => 100 - (Math.floor(hlp.getRandomIntInclusive(1, 100)) + idx),
-    'strk': (idx, col) => hlp.normCol(idx, col).next().value,
   },
   'bright': {
     'sat': () => Math.floor(hlp.getRandomIntInclusive(20, 100)),
     'lum': (idx) => Math.floor(hlp.getRandomIntInclusive(1, 100)) * (idx),
-    'strk': (idx, col) => hlp.normCol(idx, col).next().value,
   },
   'inkstain': {
     'sat': () => Math.floor(hlp.getRandomIntInclusive(20, 100)),
     'lum': (idx) => idx % Math.floor(hlp.getRandomIntInclusive(1, 100)),
-    'strk': (idx, col) => hlp.normCol(idx, col).next().value,
   },
   'inkflood': {
     'sat': () => Math.floor(hlp.getRandomIntInclusive(20, 100)),
     'lum': (idx) => Math.floor(hlp.getRandomIntInclusive(1, 100)) % idx,
-    'strk': (idx, col) => hlp.normCol(idx, col).next().value,
   },
   'milkstain': {
     'sat': () => Math.floor(hlp.getRandomIntInclusive(20, 100)),
     'lum': (idx) => Math.floor(hlp.getRandomIntInclusive(0, 100)) * (100/idx),
-    'strk': (idx, col) => hlp.normCol(idx, col).next().value,
   },
   'milkflood': {
     'sat': () => Math.floor(hlp.getRandomIntInclusive(20, 100)),
     'lum': (idx) => (100/idx) * Math.floor(hlp.getRandomIntInclusive(0, 100)),
-    'strk': (idx, col) => hlp.normCol(idx, col).next().value,
   },
   'milkGradient': {
     'sat': (idx) => hlp.norm(idx).next().value,
     'lum': (idx) => Math.floor(hlp.getRandomIntInclusive(100 - idx, 100 - idx)),
-    'strk': (idx, col) => hlp.normCol(idx, col).next().value,
   },
-  'inkGradient': {
+  'sideGradient': {
     'sat': (idx) => hlp.norm(idx).next().value,
-    'lum': (idx) => Math.floor(hlp.getRandomIntInclusive(0 + idx, 100 - idx)),
-    'strk': (idx, col) => hlp.normCol(idx, col).next().value,
+    'lum': (idx) => Math.floor(hlp.getRandomIntInclusive(100 - idx, 100 - idx)),
   },
   'stripes': {
     'sat': () => Math.floor(hlp.getRandomIntInclusive(20, 100)),
     'lum': () => Math.floor(Math.random() * 100),
-    'strk': (idx, col) => hlp.normCol(idx, col).next().value,
   },
   'snow': {
     'sat': () => 0,
@@ -60,12 +51,17 @@ export const fillThings = {
   'outlines': {
     'sat': () => 0,
     'lum': () => 100,
-    'strk': (idx, col) => `hsl(${(col + 180) % 360}deg 100% 50%)`,
+    'strk': (idx, hue) => `hsl(${(hue + 180) % 360}deg 100% 50%)`,
   },
   'gradientOutlines': {
     'sat': () => 0,
     'lum': () => 100,
-    'strk': (idx, col) => hlp.normColInv(idx, (col + 180) % 360).next().value,
+    'strk': (idx, hue) => hlp.normColInv(idx, (hue + 180) % 360).next().value,
+  },
+  'tron': {
+    'sat': () => 90,
+    'lum': () => 10,
+    'strk': (idx, hue) => `hsl(${(hue + 180) % 360}deg 100% 50%)`,
   }
 };
 
@@ -94,20 +90,40 @@ export function colourBall(col) {
 // STYLE export functionS
 
 
-export function style(type, idx, row, hue, strk) {
+export function strokeStyle(type, idx, row, hue) {
+  row.forEach(r => {
+    if(type == 'outlines') {
+      r.setAttribute('stroke', `hsl(${(hue + 180) % 360}deg 100% 50%)`);
+    } else
+    if(type == 'gradientOutlines') {
+      r.setAttribute('stroke', hlp.normColInv(idx, (hue + 180) % 360).next().value);
+    } else
+    if(type == 'tron') {
+      r.setAttribute('stroke', `hsl(${(hue + 180) % 360}deg 100% 50%)`);
+    } else {
+      r.setAttribute('stroke', hlp.normCol(idx, hue).next().value);
+    }
+  });
+}
+
+
+export function fillStyle(type, idx, row, hue) {
   let sat, lum;
-  if(type == 'milkGradient' || 
-     type == 'inkGradient') {
+  if(type == 'milkGradient') {
     sat = fillThings[type].sat(idx);
   }
-  if(type == 'stripes') {
+  if(type == 'stripes' || 
+     type == 'inkGradient') {
     sat = fillThings[type].sat(idx);
     lum = fillThings[type].lum(idx);
   }
   if(type == 'outlines') {
     lum = fillThings[type].lum(idx);
   }
-  row.forEach(r => {
+  // console.log(row.length);
+  row.forEach((r,i) => {
+  // console.log(i, r);
+  // console.log(i, hlp.normCell(i,row.length).next().value);
     type == 'bright'
     || type == 'milkstain'
     || type == 'milkflood'
@@ -117,20 +133,23 @@ export function style(type, idx, row, hue, strk) {
        type !== 'stripes') {
       sat = fillThings[type].sat(idx);
     }
-    if(type !== 'stripes') {
+    if(type !== 'stripes' && 
+       type !== 'inkGradient') {
       lum = fillThings[type].lum(idx);
     }
-
-    // console.log(`${idx} fill: hsl(${col}deg ${sat}% ${lum}%)`);
-    r.attributes['fill'].nodeValue = `hsl(${hue}deg ${sat}% ${lum}%)`;
-    if(strk == 0) {
-      r.setAttribute('stroke', 'none');
+    if(type == 'sideGradient') {
+      // console.log(idx, hlp.normCell(idx).next().value);
+      r.attributes['fill'].nodeValue = `hsl(${hue}deg ${50}% ${hlp.normCell(i,row.length).next().value}%)`;
     } else {
-      r.setAttribute('stroke', fillThings[type].strk(idx,hue));
+      // console.log(`${idx} fill: hsl(${col}deg ${sat}% ${lum}%)`);
+      r.attributes['fill'].nodeValue = `hsl(${hue}deg ${sat}% ${lum}%)`;
     }
   });
 }
 
+//<path d="M 14 234 L 33 257 14 264 Z" fill="hsl(210deg 100% 35%)"/>
+//<path d="M 14 263 L 33 256 171 318 107 320 14 291 Z" fill="hsl(210deg 100% /55%)"/>
+//<path d="M 170 319 L 388 378 293 392 107 320 Z" fill="hsl(210deg 100% 15%)"/>
 
 
 
