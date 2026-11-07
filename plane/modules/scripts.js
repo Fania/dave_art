@@ -128,19 +128,17 @@ let freq = 100;
 const mainLoop = () => {
   freq = getRandomIntInclusive(500, 20000);
   const randFunc = getWeighedRandom([
-    'colourise', 
-    'colouriseWhiteish', 
-    'colouriseBlackToColour', 
-    'colouriseBlackToBlack', 
-    'colouriseColourToWhite', 
-    'colouriseWhiteToColour', 
-    'colourWholeGradient', 
-    'colourStripes', 
-    'whiteOutlines', 
-    'glitter', 
-    'colourOutlines', 
-    'strokeGradient'
-  ], [4,1,1,1,1,1,4,4,1,3,2,4]);
+    'harlequin', 
+    'bright', 
+    'inkflood', 
+    'inkstain', 
+    'milkstain', 
+    'milkGradient', 
+    'stripes', 
+    'snow', 
+    'outlines', 
+    'gradientOutlines'
+  ], [1,1,1,1,1,1,1,1,1,1]);
   reDrawNew(randFunc);
   setTimeout(mainLoop, freq);
   console.log('freq', freq);
@@ -148,13 +146,16 @@ const mainLoop = () => {
 }
 
 const testLoop = () => {
-    freq = getRandomIntInclusive(500, 6000);
+    // freq = getRandomIntInclusive(500, 6000);
+    freq = 1000000;
     // const testFuncs = getWeighedRandom([colourise, glitter], [1,1]);
-    const testFuncs = ['colourise','colouriseWhiteish','colouriseBlackToColour','colouriseBlackToBlack','colouriseColourToWhite','colouriseWhiteToColour','colourWholeGradient','colourStripes','whiteOutlines','colourOutlines','strokeGradient'];
+    const testFuncs = ['harlequin','bright','inkflood','inkstain','milkstain','milkGradient','stripes','snow','outlines','gradientOutlines'];
     // const testFuncs = ffs.colourise;
     // const testFuncs = 'colourise';
     
-    reDrawNew(testFuncs[10]);
+    // reDrawNew(testFuncs[10]);
+    reDrawNew('inkGradient');
+    // reDrawNew('milkGradient');
     setTimeout(testLoop, freq);
 
     console.log('freq', freq);
@@ -167,7 +168,7 @@ const testLoop = () => {
 
 // COMMANDS TO START RUNNING
 // setTimeout(mainLoop, freq);
-// setTimeout(testLoop, freq);
+setTimeout(testLoop, freq);
 
 // reDraw(whiteOutlines); // testing line
 // reDraw(glitter); // testing line
