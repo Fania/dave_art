@@ -15,18 +15,18 @@ clearoutInt(glitterIDs);
 
 
 
-const styles = {
+export const styles = {
   'harlequin': 4,
   'bright': 1,
-  'inkstain': 1,
+  'inkstain': 2,
   'inkflood': 1,
   'milkstain': 1,
   'milkGradient': 3,
   'sideGradient': 2,
   'stripes': 4,
-  'outlines': 1,
   'gradientOutlines': 1,
-  'tron': 2
+  'tron': 2,
+  'glitter': 3
 };
 
 
@@ -130,13 +130,8 @@ const mainLoop = () => {
 
 const testLoop = () => {
     // freq = getRandomIntInclusive(500, 6000);
-    freq = 20000;
-    // const testFuncs = getWeighedRandom([colourise, glitter], [1,1]);
-    
-    // reDrawNew(testFuncs[10]);
-    draw('tron');
-    // reDrawNew(ffs.glitter);
-    // reDrawNew('milkGradient');
+    freq = 200000;
+    draw('sideGradient');
     setTimeout(testLoop, freq);
 
     console.log('freq', freq);
@@ -151,5 +146,5 @@ const testLoop = () => {
 setTimeout(mainLoop, freq);
 // setTimeout(testLoop, freq);
 
-// reDraw(whiteOutlines); // testing line
-// reDraw(glitter); // testing line
+// draw('milkstain');
+// draw('glitter');

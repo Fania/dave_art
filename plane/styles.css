@@ -19,28 +19,13 @@ main {
   justify-content: center;
 }
 
-/* 744 × 752 */
-img {
-  /* width: 100%; */
-  /* height: auto; */
-  position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
-  opacity: 1;
-}
 
 svg {
   width: 100%;
-  /* height: auto; */
   max-height: 96vh;
   /* position: absolute; */
   /* top: 0; bottom: 0; left: 0; right: 0; */
   opacity: 1;
-  /* background: rgb(206, 201, 151); */
-  /* background: linear-gradient(to top right, var(--blue), var(--blue) 50%, var(--purple) 50%, var(--purple)); */
-  /* border: 1px solid white; */
-
-  /* mix-blend-mode: difference; */
-
 }
 
 svg text {
@@ -53,19 +38,6 @@ svg path {
   stroke-width: 4;
 }
 
-/* svg circle stop {
-  transition: all 2s ease;
-} */
-
 svg .coordinates.hide {
   display: none;
 }
-
-
-/* svg circle stop:first-child {
-    stop-color: #1EBEE0;
-}
-
-svg circle stop:last-child {
-    stop-color: #952491;
-} */

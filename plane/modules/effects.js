@@ -47,12 +47,6 @@ export const styleDefs = {
     'lum': () => Math.floor(Math.random() * 100),
     'strk': () => 'sometimes',
   },
-  'outlines': {
-    'sat': () => 0,
-    'lum': () => 100,
-    'strk': () => 'always',
-    'strkCol': (idx, hue) => `hsl(${(hue + 180) % 360}deg 100% 50%)`,
-  },
   'gradientOutlines': {
     'sat': () => 0,
     'lum': () => 100,
@@ -64,6 +58,10 @@ export const styleDefs = {
     'lum': () => 10,
     'strk': () => 'always',
     'strkCol': (idx, hue) => `hsl(${(hue + 180) % 360}deg 100% 50%)`,
+  },
+  'glitter': {
+    'run': (idx, row, hue) => glitter(idx, row, hue),
+    'strk': () => 'sometimes',
   }
 };
 
@@ -129,6 +127,10 @@ export function fillStyle(type, idx, row, hue) {
   if(type == 'outlines') {
     lum = styleDefs[type].lum(idx);
   }
+  if(type == 'glitter') {
+    styleDefs[type].run(idx, row, hue);
+    return 0;
+  }
   row.forEach((r,i) => {
     type == 'bright'
     || type == 'milkstain'
@@ -153,12 +155,14 @@ export function fillStyle(type, idx, row, hue) {
 
 
 
-export function glitter(idx, row, col) {
-  const randFunc = hlp.getWeighedRandom([colourise, colouriseWhiteish, colouriseBlackToColour, colouriseBlackToBlack, colouriseColourToWhite, colouriseWhiteToColour, colourWholeGradient, colourStripes, whiteOutlines, colourOutlines, strokeGradient], [4,1,1,1,1,1,4,4,1,2,4]);
+export function glitter(idx, row, hue) {
+  if(hlp.styles['glitter']) delete hlp.styles['glitter'];
+  const randStyle = hlp.getWeighedRandom(Object.keys(hlp.styles), Object.values(hlp.styles));
+  const freq = hlp.getWeighedRandom([false,true],[1,1]);
   let glitterID = setInterval(()=> {
-    randFunc(idx, row, col, strk);
+    fillStyle(randStyle, idx, row, hue);
+    strokeStyle(randStyle, idx, row, (hue + 180) % 360, freq);
   }, 1000);
   hlp.glitterIDs.push(glitterID);
-  // console.log('inside glittesr',glitterID);
   return glitterID;
 }
