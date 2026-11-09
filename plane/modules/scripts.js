@@ -112,7 +112,6 @@ const mainLoop = () => {
   }
   draw(randStyle);
   setTimeout(mainLoop, freq);
-  // console.log('freq', freq, randStyle);
 }
 
 const testLoop = () => {
