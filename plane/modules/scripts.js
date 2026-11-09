@@ -61,7 +61,6 @@ export function* normCell(i,len) {
 
 export function* normCol(idx, col) {
   const lum = (idx - 0) / ((rows.length * 2) - 0) * 100;
-  // console.log('inside normCol idx, lum', idx, lum);
   yield `hsl(${col}deg 100% ${lum}%)`
 }
 
