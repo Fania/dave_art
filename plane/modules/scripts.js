@@ -66,13 +66,13 @@ export function* normCol(idx, col) {
 }
 
 function clearoutInt(ids) {
-  console.log('clearing Intervals');
+  // console.log('clearing Intervals');
   ids.forEach(gid => {
     clearInterval(gid);
   });
 }
 function clearoutTime(ids) {
-  console.log('clearing Timeouts');
+  // console.log('clearing Timeouts');
   ids.forEach(tid => {
     clearTimeout(tid);
   });
@@ -83,14 +83,14 @@ function clearoutTime(ids) {
 function draw(type) {
   // console.log('inside reDraw',func.name);
   const hue = Math.floor(Math.random() * 360);
-  const freq = getWeighedRandom([false,true],[1,1]);
+  const toggle = getWeighedRandom([false,true],[1,1]);
   const test = ffs.styleDefs[type].strk();
-  console.log('inside draw', type, test, freq);
+  console.log(type, freq, test, toggle);
   rows.forEach((row, idx) => {
     const [...paths] = row.children;
     let timerID = setTimeout(()=> {
       ffs.fillStyle(type, idx, paths, hue);
-      ffs.strokeStyle(type, idx, paths, hue, freq);
+      ffs.strokeStyle(type, idx, paths, hue, toggle);
     }, idx * 100);
     timerIDs.push(timerID);
   });
@@ -112,7 +112,7 @@ const mainLoop = () => {
   }
   draw(randStyle);
   setTimeout(mainLoop, freq);
-  console.log('freq', freq);
+  // console.log('freq', freq, randStyle);
 }
 
 const testLoop = () => {

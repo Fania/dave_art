@@ -1,7 +1,5 @@
 import * as hlp from "./scripts.js";
 
-console.log('effects');
-
 const ball = document.getElementById('ball');
 const stops = ball.children;
 
