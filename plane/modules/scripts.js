@@ -82,6 +82,7 @@ function clearoutTime(ids) {
 
 function draw(type) {
   // console.log('inside reDraw',func.name);
+  clearoutTime(timerIDs);
   const hue = Math.floor(Math.random() * 360);
   const toggle = getWeighedRandom([false,true],[1,1]);
   const test = ffs.styleDefs[type].strk();
@@ -95,7 +96,6 @@ function draw(type) {
     timerIDs.push(timerID);
   });
   ffs.colourBall(hue);
-  // clearoutTime(timerIDs);
   clearoutInt(glitterIDs);
 }
 
