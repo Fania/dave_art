@@ -51,7 +51,7 @@ export const styleDefs = {
     'sat': () => 0,
     'lum': () => 100,
     'strk': () => 'always',
-    'strkCol': (idx, hue) => hlp.normColInv(idx, (hue + 180) % 360).next().value,
+    'strkCol': (idx, hue) => hlp.normCol(idx, (hue + 180) % 360).next().value,
   },
   'tron': {
     'sat': () => 90,

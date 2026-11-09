@@ -8,9 +8,9 @@ Based on Dave Everitt's artwork.
 ## Todo
 
 
-- [ ] preset certain speeds, change random freqs
 - [ ] fading? transitions?
 - [ ] another glitter style
+- [x] preset certain speeds, change random freqs
 - [x] fix glitter to only take black outline lines
 - [x] fix random selection combinations, i.e. line colour, fill, gradient, etc
 - [x] with or without stroke hardcoded into styles

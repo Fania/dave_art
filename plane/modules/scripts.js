@@ -1,12 +1,7 @@
 import * as ffs from "./effects.js";
 
-console.log('scripts');
-
-// const [...paths] = document.getElementsByTagName('path');
 const [...rows] = document.getElementsByClassName('rows');
-// const circ = document.getElementsByTagName('circle')[0];
-// const ball = document.getElementById('ball');
-// const stops = ball.children;
+
 let timerIDs = [];
 export let glitterIDs = [];
 
@@ -20,7 +15,7 @@ export const styles = {
   'bright': 1,
   'inkstain': 2,
   'inkflood': 1,
-  'milkstain': 1,
+  'milkstain': 0,
   'milkGradient': 3,
   'sideGradient': 2,
   'stripes': 4,
@@ -39,7 +34,7 @@ export function getRandomIntInclusive(min, max) {
 }
 
 
-export function add(a, b) { return a + b; } // helper export function
+function add(a, b) { return a + b; }
 export function getWeighedRandom(elems, weights) {
   // get total weight (sum of all items in weights array)
   const totalWeight = weights.reduce(add, 0);
@@ -70,24 +65,13 @@ export function* normCol(idx, col) {
   yield `hsl(${col}deg 100% ${lum}%)`
 }
 
-export function* normColInv(idx, col) {
-  const lum = (idx - 0) / ((rows.length * 2) - 0) * 100;
-  // console.log('inside normCol idx, lum', idx, lum);
-  yield `hsl(${col}deg 100% ${50 - lum}%)`
-}
-
-export function getStroke(idx, col) {
-  let newCol = normCol(idx, col).next().value;
-  return getWeighedRandom['none','rgba(0,0,0,.4)',newCol],[2,1,2];
-}
-
-export function clearoutInt(ids) {
+function clearoutInt(ids) {
   console.log('clearing Intervals');
   ids.forEach(gid => {
     clearInterval(gid);
   });
 }
-export function clearoutTime(ids) {
+function clearoutTime(ids) {
   console.log('clearing Timeouts');
   ids.forEach(tid => {
     clearTimeout(tid);
@@ -96,7 +80,7 @@ export function clearoutTime(ids) {
 
 
 
-export function draw(type) {
+function draw(type) {
   // console.log('inside reDraw',func.name);
   const hue = Math.floor(Math.random() * 360);
   const freq = getWeighedRandom([false,true],[1,1]);
@@ -120,31 +104,32 @@ export function draw(type) {
 // // MAIN GAME LOOP
 let freq = 100;
 const mainLoop = () => {
-  freq = getRandomIntInclusive(500, 20000);
   const randStyle = getWeighedRandom(Object.keys(styles), Object.values(styles));
+  if(randStyle == 'glitter') {
+    freq = 20000;
+  } else {
+    freq = getWeighedRandom([500,1000,2000,4000,6000,10000,15000,20000], [1,1,2,1,2,3,2]);
+  }
   draw(randStyle);
   setTimeout(mainLoop, freq);
   console.log('freq', freq);
-  // console.log('func', randFunc.name);
 }
 
 const testLoop = () => {
-    // freq = getRandomIntInclusive(500, 6000);
     freq = 200000;
     draw('sideGradient');
     setTimeout(testLoop, freq);
-
     console.log('freq', freq);
-    // console.log('func', testFuncs.name);
-    // console.log('func', testFuncs);
 }
 
 
 
 
-// COMMANDS TO START RUNNING
+// COMMAND TO START MAIN LOOP
 setTimeout(mainLoop, freq);
+
+// COMMAND TO START TESTING LOOP
 // setTimeout(testLoop, freq);
 
-// draw('milkstain');
+// STATIC TESTS
 // draw('glitter');
