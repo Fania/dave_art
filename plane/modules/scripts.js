@@ -45,9 +45,7 @@ export function getWeighedRandom(elems, weights) {
       weighedElems[weighedElems.length] = elems[currentElem];
     currentElem++;
   }
-  // console.log('weighedElems',weighedElems);
   const rnd = Math.floor(Math.random() * totalWeight);
-  // console.log('weighedElems[rnd]',weighedElems[rnd]);
   return weighedElems[rnd];
 }
 
